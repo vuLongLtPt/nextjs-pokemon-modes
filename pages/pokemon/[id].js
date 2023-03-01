@@ -5,13 +5,11 @@ import Link from "next/link";
 import styles from "../../styles/Details.module.css";
 
 export async function getStaticPaths() {
-  const resp = await fetch(
-    "https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json"
-  );
+  const resp = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json");
   const pokemon = await resp.json();
 
   return {
-    paths: pokemon.map((pokemon) => ({
+    paths: pokemon.map(pokemon => ({
       params: { id: pokemon.id.toString() },
     })),
     fallback: false,
@@ -36,6 +34,10 @@ export default function Details({ pokemon }) {
     <div>
       <Head>
         <title>{pokemon.name}</title>
+        <meta
+          property="org:image"
+          content="https://images.unsplash.com/photo-1677527015260-c4eecdbb4a93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+        ></meta>
       </Head>
       <div>
         <Link href="/">
